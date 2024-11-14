@@ -1,0 +1,24 @@
+const int led[ ]={10,11,12,13};
+int i, j;
+const int ledmap [8][4]=
+{{1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1},
+{0,0,0,1},{0,0,1,0},{0,1,0,0},{1,0,0,0},};
+void setup( )
+{
+  for (i=0;i<4;i++)
+       pinMode(led[i],OUTPUT);
+}
+void loop( )
+{
+  for(i=0;i<8;i++)
+   {   
+  for(j=0;j<4;j++)
+  {
+    if(ledmap[i][j]==1)
+       digitalWrite(led[j],HIGH);
+       else
+           digitalWrite(led[j],LOW);
+  }
+  delay(100);
+  }
+}
