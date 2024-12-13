@@ -1,0 +1,47 @@
+const int sw=2;
+const int led[ ]={10,11,12,13};
+const int debounceDelay=20;
+int val;
+int i;
+int j=3;
+int direct=0;
+
+void setup()
+{
+  pinMode(sw,INPUT_PULLUP);
+  for(i=0;i<4;i++)
+      pinMode(led[i],OUTPUT);
+}
+  void loop( )
+ {
+   val=digitalRead(sw);
+  if(val==LOW)
+  {
+    delay(debounceDelay); //消除開關機械彈跳
+    while(digitalRead(sw)==LOW)
+    ;
+    direct=!direct;
+  }
+  for(i=0;i<4;i++)
+  digitalWrite(led[i],LOW);
+  if(direct==0)
+  {
+    digitalWrite(led[j],HIGH);
+    delay(100);
+    if(j==0)
+        j=3;
+    else
+        j=j-1;
+  }
+  else
+  {
+    digitalWrite(led[j],HIGH);
+    delay(100);
+    if(j==3)
+    j=0;
+    else
+    j=j+1;
+    
+    
+  }
+}
