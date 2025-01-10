@@ -1,0 +1,30 @@
+const int sw=2;
+const int led=13;
+int buttonState=LOW;
+int ledState=HIGH;
+int lastButtonState=HIGH;
+int val;
+
+void setup() {
+  // put your setup code here, to run once:
+ pinMode(sw,INPUT_PULLUP);
+ pinMode(led,OUTPUT);
+
+
+}
+
+void loop() {
+
+   if ( buttonState==LOW&&lastButtonState==HIGH) {
+   ledState=!ledState;
+   }
+    if (ledState) {
+     digitalWrite(led ,HIGH);
+     delay(500);
+     digitalWrite(led ,LOW);
+     delay(500); 
+    }else{
+  digitalWrite(led ,LOW);
+  }
+  
+}
