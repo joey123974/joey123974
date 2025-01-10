@@ -1,0 +1,35 @@
+const int sw=2;
+const int led=13;
+const int debounceDelay=20;
+bool isBlinking=false;
+unsigned long previousMillis=0;
+const int blinklnterval=500;
+
+void setup() {
+  // put your setup code here, to run once:
+ pinMode(sw,INPUT_PULLUP);
+ pinMode(led,OUTPUT);
+
+
+}
+
+void loop() {
+static bool lastButtonState=HIGH;
+bool currentButtonState=digitalRead(sw);
+if (lastButtonState==HIGH&&currentButtonState==LOW){delay(debounceDelay);
+while (digitalRead(sw)==LOW);
+isBlinking=!isBlinking;
+}
+ lastButtonState=currentButtonState;
+ if (isBlinking){
+ unsigned long  currentMillis=millis();
+ if( currentMillis-previousMillis>=blinklnterval)
+  {
+   previousMillis= currentMillis;
+   digitalWrite(led,!digitalRead(led));
+  }
+}else{
+  digitalWrite(led,LOW);
+  }
+  
+}
