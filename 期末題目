@@ -1,0 +1,41 @@
+// 定義按鍵和LED接腳
+int buttonPin = 2;   // 按鍵開關接腳 D2
+int ledPin = 13;     // LED 接腳 D13
+
+// 狀態變數
+int ledState = 0;    // LED 狀態，0 表示暗，1 表示閃爍
+int buttonState = 0; // 當前按鍵狀態
+int lastButtonState = 0; // 上一次的按鍵狀態
+
+void setup() {
+  // 設定按鍵開關為輸入
+  pinMode(buttonPin, INPUT);
+  
+  // 設定LED為輸出
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // 讀取按鍵狀態
+  buttonState = digitalRead(buttonPin);
+
+  // 檢測按鍵是否從未按下到按下（上升沿偵測）
+  if (buttonState == HIGH && lastButtonState == LOW) {
+    ledState = 1 - ledState; // 切換 LED 狀態
+  }
+
+  // 控制 LED
+  if (ledState == 1) {
+    // LED 閃爍
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  } else {
+    // LED 暗
+    digitalWrite(ledPin, LOW);
+  }
+
+  // 記錄按鍵的最後狀態
+  lastButtonState = buttonState;
+}
