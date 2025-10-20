@@ -1,0 +1,19 @@
+char c;
+
+void setup() {
+  // put your setup code here, to run once
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+if(Serial.available()){
+  c=Serial.parseInt();
+
+Serial.print('華氏溫度為');
+Serial.print(c*9/5+32);
+Serial.print("F");
+
+delay(1000);
+ }
+}
