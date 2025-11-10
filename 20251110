@@ -1,0 +1,16 @@
+int senser;
+int x;
+void setup(){
+pinMode(3,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop(){
+ senser=analogRead(A0);
+ Serial.print(senser);
+ Serial.print("   ");
+ x = map(senser,0,1023,0,255);
+ Serial.println(x);
+ analogWrite(3,x);
+ delay(100);
+}
